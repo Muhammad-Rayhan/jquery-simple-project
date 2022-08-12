@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        input[type=radio] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center my-3">
+            <div class="col-7">
+                <form id="submit">
+                    <!-- ========================Switch=========================== -->
+                    <label class="form-label text-danger">Switch :</label><br>
+                    <div class="form-group form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked><br>
+                    </div>
+                    <input type="text" class="form-control mt-2" id="switchSelect" value="ON" name="switchSelect" readonly>
+
+                    <!-- ========================Gender=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Gander :</label><br>
+                        <input type="radio" name="gander" value="1"><span class="ps-2">Male</span>
+                        <input type="radio" name="gander"><span class="ps-2">Female</span><br>
+                        <input type="text" class="form-control mt-2" id="radioSelect" name="radioSelect" readonly>
+                    </div>
+
+                    <!-- ========================Country=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Country :</label><br>
+                        <select class="form-control" id="country">
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Pakisthan">Pakisthan</option>
+                            <option value="USA">USA</option>
+                            <option value="Russia">Russia</option>
+                            <option value="United State">United State</option>
+                        </select>
+                        <input type="text" class="form-control mt-2" id="selectOption" name="selectOption" readonly>
+                    </div>
+
+                    <!-- ========================Status=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Status :</label><br>
+                        <input type="radio" name="status" value="Enable"><span class="ps-2">Enable</span>
+                        <input type="radio" name="status" value="Disable"><span class="ps-2">Disable</span><br>
+                        <input type="text" class="form-control mt-2" id="radioStatus" name="radioStatus" readonly>
+                    </div>
+
+                    <!-- ========================Norlam Checkbox=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Select Option (Normal) :</label><br>
+                        <input type="checkbox" name="select" value="Email Varification"><span class="ps-2 me-5">Email Varification</span>
+                        <input type="checkbox" name="select" value="Phone Number Varification"><span class="ps-2 me-5">Phone Number Varification</span>
+                        <input type="checkbox" name="select" value="Two Way Varification"><span class="ps-2">Two Way Varification</span><br>
+                        <input type="text" class="form-control mt-2" id="check" name="check" readonly>
+                    </div>
+
+                    <!-- ========================Better Checkbox=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Select Option (High) :</label><br>
+                        <input type="checkbox" name="checkbox" id="checkbox1" value="1"><span class="ps-2 me-5">Facebook</span>
+                        <input type="checkbox" name="checkbox" id="checkbox2" value="2"><span class="ps-2 me-5">Twitter</span>
+                        <input type="checkbox" name="checkbox" id="checkbox3" value="3"><span class="ps-2">Instagram</span><br>
+                        <input type="text" class="form-control mt-2" id="allCheck" name="allCheck" readonly>
+                    </div>
+
+                    <!-- ========================Best Checkbox=========================== -->
+                    <div class="form-group mt-2">
+                        <label class="form-label text-danger">Multipal Value Checked :</label><br>
+                        <input type="checkbox" name="multiCheckbox" id="checkboxSelect1" value="1"><span class="ps-2 me-5">Apple</span>
+                        <input type="checkbox" name="multiCheckbox" id="checkboxSelect2" value="2"><span class="ps-2 me-5">Banana</span>
+                        <input type="checkbox" name="multiCheckbox" id="checkboxSelect3" value="3"><span class="ps-2">Mango</span><br>
+                        <input type="text" class="form-control mt-2" id="allCheckSelect" name="allCheck" readonly>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        //Get switch value
+        $("#flexSwitchCheckChecked").change(function(){
+            if($(this).prop("checked")){
+                $("#switchSelect").val("ON");
+            } else{
+                $("#switchSelect").val("OFF");
+            }
+        });
+
+        //Get gender value radio type
+        $("input[name=gander]").change(function() {
+            $value = $(this).val();
+            if ($value == 1) {
+                $("#radioSelect").val("Male");
+            } else {
+                $("#radioSelect").val("Female");
+            }
+        });
+
+        //Get select value Any Option
+        $("#country").change(function() {
+            $value = $(this).val();
+            $("#selectOption").val($value);
+        });
+
+        //Get status value radio type
+        $("input[name=status]").change(function() {
+            $value = $(this).val();
+            $("#radioStatus").val($value);
+        });
+
+        //Get only one option value checkbox type(Normal)
+        $("input[name=select]").change(function() {
+            $('input[name=select]').not(this).prop('checked', false);
+            $value = $(this).val();
+            $("#check").val($value);
+        });
+
+        //Get only one checkbox value checkbox type when click checkbox than value show or checkout than value null
+        $("input[name=checkbox]").change(function() {
+
+            $('input[name=checkbox]').not(this).prop('checked', false);
+
+            $facebook = $("#checkbox1").prop("checked");
+            $twitter = $("#checkbox2").prop("checked");
+            $instagram = $("#checkbox3").prop("checked");
+
+            if ($facebook) {
+                $("#allCheck").val("Facebook");
+            } else if ($twitter) {
+                $("#allCheck").val("Twitter");
+            } else if ($instagram) {
+                $("#allCheck").val("Instagram");
+            } else {
+                $("#allCheck").val("");
+            }
+        });
+
+        // Get multipal checkbox value checkbox type when click any checkbox than value show or checkout than value null
+        $("input[name=multiCheckbox]").change(function() {
+
+            $apple = $("#checkboxSelect1").prop("checked");
+            $banana = $("#checkboxSelect2").prop("checked");
+            $mango = $("#checkboxSelect3").prop("checked");
+
+            if ($apple && $banana && $mango) {
+                $("#allCheckSelect").val("Apple || Banana || Mango");
+            } else if ($apple && $banana) {
+                $("#allCheckSelect").val("Apple || Banana");
+            } else if ($apple && $mango) {
+                $("#allCheckSelect").val("Apple || Mango");
+            } else if ($banana && $mango) {
+                $("#allCheckSelect").val("Banana || Mango");
+            } else if ($apple) {
+                $("#allCheckSelect").val("Apple");
+            } else if ($banana) {
+                $("#allCheckSelect").val("Banana");
+            } else if ($mango) {
+                $("#allCheckSelect").val("Mango");
+            } else {
+                $("#allCheckSelect").val("");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
